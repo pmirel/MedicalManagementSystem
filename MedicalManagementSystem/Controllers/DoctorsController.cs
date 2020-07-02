@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,13 +21,31 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // GET: api/Doctors
+        /// <summary>
+        /// Get a list of all the doctors
+        /// </summary>
+        /// <param name="speciality">Specify this parameter for a list of doctors from a specific medical speciality</param>
+        /// <returns>A list of doctor objects</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
+        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors(
+            [FromQuery] Models.Speciality? speciality = null)
         {
-            return await _context.Doctors.ToListAsync();
+            IQueryable<Doctor> result = _context.Doctors;
+            if (speciality != null)
+            {
+                result = result.Where(f => f.Speciality == speciality);
+            }
+            var resultList = await result.ToListAsync();
+
+            return resultList;
         }
 
         // GET: api/Doctors/5
+        /// <summary>
+        /// Get a detailed views of a specific doctor
+        /// </summary>
+        /// <param name="id">id of doctor object</param>
+        /// <returns>A specific doctor object</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Doctor>> GetDoctor(long id)
         {
@@ -42,6 +60,12 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // PUT: api/Doctors/5
+        /// <summary>
+        /// Edit a specific doctor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="doctor">The name of a specific doctor</param>
+        /// <returns>Edited Doctor</returns>
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -74,9 +98,26 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // POST: api/Doctors
+        /// <summary>
+        /// Create a doctor object
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///"id": 0,
+        ///"firstName": "string",
+        ///"lastName": "string",
+        ///"speciality": "Other"
+        ///}
+        /// </remarks>
+        /// <param name="doctor"></param>
+        /// <returns>Created object</returns>
+        /// <response code="201">Returns the newly created item, FirstName and LastName must have between 2 and 10 letters and cannot be empty</response>
+        /// <response code="400">If the item is null</response>
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {
             _context.Doctors.Add(doctor);
@@ -86,6 +127,11 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // DELETE: api/Doctors/5
+        /// <summary>
+        /// Delete a specific Doctor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Empty</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Doctor>> DeleteDoctor(long id)
         {
