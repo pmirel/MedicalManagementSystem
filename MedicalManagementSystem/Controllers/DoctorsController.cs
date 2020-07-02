@@ -46,7 +46,7 @@ namespace MedicalManagementSystem.Controllers
         /// Get a detailed views of a specific doctor
         /// </summary>
         /// <param name="id">id of doctor object</param>
-        /// <returns>A specific doctor object</returns>
+        /// <returns>A specific doctor object with a list of pacients</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<DoctorDetail>> GetDoctor(long id)
         {

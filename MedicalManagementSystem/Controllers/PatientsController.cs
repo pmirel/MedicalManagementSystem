@@ -22,6 +22,10 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // GET: api/Patients
+        /// <summary>
+        /// Get all patients
+        /// </summary>
+        /// <returns>List of patients</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
         {
@@ -29,6 +33,11 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // GET: api/Patients/5
+        /// <summary>
+        /// get a specific patients
+        /// </summary>
+        /// <param name="id">id of pacient</param>
+        /// <returns>A specific patient with a list of prescriptions</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<PatientDetail>> GetPatient(long id)
         {
@@ -46,6 +55,12 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // PUT: api/Patients/5
+        /// <summary>
+        /// Edit a specific patient
+        /// </summary>
+        /// <param name="id">id of patient</param>
+        /// <param name="patient">Name of patient</param>
+        /// <returns>edited patient</returns>
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -78,9 +93,29 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // POST: api/Patients
+        /// <summary>
+        /// Create a patient object
+        /// </summary>
+        /// <remarks>
+        /// 
+        ///      "id": 0,
+        ///     "firstName": "string",
+        ///     "lastName": "string",
+        ///     "cnp": "string",
+        ///     "adress": "string",
+        ///     "email": "string",
+        ///     "doctorId": 0
+        ///
+        /// </remarks>
+        /// <param name="patient">name of patient</param>
+        /// <returns>Created object</returns>
+        /// <response code="201">Returns the newly created item, FirstName and LastName must have between 2 and 10 letters and cannot be empty CNP must have 13 numbers</response>
+        /// <response code="400">If the item is null</response>
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Patient>> PostPatient(Patient patient)
         {
             _context.Patients.Add(patient);
@@ -90,6 +125,11 @@ namespace MedicalManagementSystem.Controllers
         }
 
         // DELETE: api/Patients/5
+        /// <summary>
+        /// Delete a specific object
+        /// </summary>
+        /// <param name="id">id of deleted object</param>
+        /// <returns>Nothing</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Patient>> DeletePatient(long id)
         {

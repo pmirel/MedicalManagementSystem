@@ -9,7 +9,7 @@ namespace MedicalManagementSystem.ViewModel
     public class PrescriptionForPatientDetail
     {
         public long Id { get; set; }
-        public long Diagnosis { get; set; }
+        public string Diagnosis { get; set; }
         public DateTimeOffset DateAdded { get; set; }
         public decimal Price { get; set; }
         public static PrescriptionForPatientDetail FromPrescripton(Prescription prescription)
