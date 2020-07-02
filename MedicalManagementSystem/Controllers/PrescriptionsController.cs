@@ -22,13 +22,31 @@ namespace MedicalManagementSystem.Controllers
 
         // GET: api/Prescriptions
         /// <summary>
-        /// Get a list of Presccriptions
+        /// Get a list of all prescriptions
         /// </summary>
-        /// <returns>List of prescriptions</returns>
+        /// <param name="from">from the date added</param>
+        /// <param name="to">to the date added</param>
+        /// <returns>A list of prescriptions</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Prescription>>> GetPrescription()
+        public async Task<ActionResult<IEnumerable<Prescription>>> GetPrescription(
+            [FromQuery] DateTimeOffset? from = null,
+            [FromQuery] DateTimeOffset? to = null)
         {
-            return await _context.Prescription.ToListAsync();
+            IQueryable<Prescription> result = _context.Prescription;
+            if (from != null)
+            {
+                result = result.Where(f => from <= f.DateAdded);
+            }
+            if (to != null)
+            {
+                result = result.Where(f => f.DateAdded <= to);
+            }
+
+            var resultList = await result
+                .ToListAsync();
+            return resultList;
+
+
         }
 
         // GET: api/Prescriptions/5

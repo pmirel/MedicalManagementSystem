@@ -23,13 +23,31 @@ namespace MedicalManagementSystem.Controllers
 
         // GET: api/Patients
         /// <summary>
-        /// Get all patients
+        /// Get a list of patients
         /// </summary>
+        /// <param name="order">order by lastname ascending or descending</param>
         /// <returns>List of patients</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
+        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients(
+            [FromQuery] string? order = null)
         {
-            return await _context.Patients.ToListAsync();
+            IQueryable<Patient> result = _context.Patients;
+            if (order != null)
+            {
+                if (order == "asc")
+                {
+                    result = result.OrderBy(f => f.LastName);
+                }
+                if (order == "desc")
+                {
+                    result = result.OrderByDescending(f => f.LastName);
+                }
+            }
+            
+
+            var resultList = await result
+                .ToListAsync();
+            return resultList;
         }
 
         // GET: api/Patients/5
