@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalManagementSystem.Models;
+using MedicalManagementSystem.ViewModel;
 
 namespace MedicalManagementSystem.Controllers
 {
@@ -47,16 +48,20 @@ namespace MedicalManagementSystem.Controllers
         /// <param name="id">id of doctor object</param>
         /// <returns>A specific doctor object</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Doctor>> GetDoctor(long id)
+        public async Task<ActionResult<DoctorDetail>> GetDoctor(long id)
         {
-            var doctor = await _context.Doctors.FindAsync(id);
+            var doctor = await _context
+                .Doctors
+                .Include(f => f.Patients)
+                .FirstOrDefaultAsync(f => f.Id == id);
+
 
             if (doctor == null)
             {
                 return NotFound();
             }
 
-            return doctor;
+            return DoctorDetail.FromDoctor(doctor);
         }
 
         // PUT: api/Doctors/5

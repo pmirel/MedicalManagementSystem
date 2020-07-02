@@ -13,6 +13,5 @@ namespace MedicalManagementSystem.Models
         public DateTimeOffset DateAdded { get; set; }
         public decimal Price { get; set; }
         public Patient Patient { get; set; }
-        public Doctor AddedBy { get; set; }
     }
 }
