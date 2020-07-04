@@ -6,9 +6,6 @@ import { Doctor } from './doctors.models';
 import { ApplicationService } from '../core/services/application.service';
 import { PaginatedDoctors } from './paginatedDoctors.models';
 import { PageEvent } from '@angular/material';
-//import { PaginatedExpenses } from './paginatedExpenses.models';
-//import { PageEvent } from '@angular/material/paginator';
-
 
 @Injectable()
 export class DoctorsService {

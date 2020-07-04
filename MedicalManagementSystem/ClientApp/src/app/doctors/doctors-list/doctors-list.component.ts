@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../doctors.models';
 import { DoctorsService } from '../doctors.service';
 import { PaginatedDoctors } from '../paginatedDoctors.models';
-import { PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-doctors-list',
@@ -15,7 +15,6 @@ export class DoctorsListComponent implements OnInit {
   public doctors: PaginatedDoctors;
   public pageEvent: PageEvent;
 
-
   constructor(private doctorsService: DoctorsService) {
   }
 
@@ -24,9 +23,9 @@ export class DoctorsListComponent implements OnInit {
   }
 
   loadDoctors(event?: PageEvent) {
+    this.doctors = null;
     this.doctorsService.listDoctors(event).subscribe(res => {
       this.doctors = res;
-
     });
   }
 

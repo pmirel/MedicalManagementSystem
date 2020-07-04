@@ -17,6 +17,13 @@
       <TypeScriptCompile Remove="ClientApp\src\app\patients\patient-details\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Migrations\20200704051507_AddStatustoBooking.cs" />
+      <Compile Remove="Migrations\20200704051507_AddStatustoBooking.Designer.cs" />
+      <Compile Remove="Migrations\20200704051830_AddStatustoBooking.cs" />
+      <Compile Remove="Migrations\20200704051830_AddStatustoBooking.Designer.cs" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />

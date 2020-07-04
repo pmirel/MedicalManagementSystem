@@ -24,6 +24,7 @@ const routes: Routes = [
 
   { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' },
   { path: 'patients', loadChildren: './patients/patients.module#PatientsModule' },
+  { path: 'bookings', loadChildren: './bookings/bookings.module#BookingsModule' },
 
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'counter', component: CounterComponent },
