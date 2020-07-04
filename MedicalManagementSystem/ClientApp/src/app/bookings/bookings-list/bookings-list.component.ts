@@ -8,7 +8,7 @@ import { BookingsService } from '../bookings.service'
 })
 export class BookingsListComponent implements OnInit {
 
-  public displayedColumns: string[] = ['location', 'dateOfBooking', 'doctorId', 'patientId'];
+  public displayedColumns: string[] = ['location', 'dateOfBooking', 'doctorId', 'patientId','action'];
   public bookings: Booking[];
 
 

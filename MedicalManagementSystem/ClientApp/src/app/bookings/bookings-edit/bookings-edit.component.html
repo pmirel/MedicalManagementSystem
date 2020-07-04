@@ -10,20 +10,18 @@
 
 
       <mat-form-field>
-        <input matInput placeholder="Description" formControlName="location" type="text">
+        <input matInput placeholder="Location" formControlName="location" type="text">
 
         <mat-error *ngIf="formGroup.get('location').touched && formGroup.get('location').errors && formGroup.get('location').errors.required">
-          Description required!
+          Location required!
         </mat-error>
       </mat-form-field>
-
-      
 
       <mat-form-field>
         <input matInput placeholder="DoctorId" formControlName="doctorId" type="number">
 
         <mat-error *ngIf="formGroup.get('doctorId').touched && formGroup.get('doctorId').errors && formGroup.get('doctorId').errors.required">
-          Sum required!
+          doctorId required!
         </mat-error>
       </mat-form-field>
 
@@ -31,7 +29,7 @@
         <input matInput placeholder="PatientId" formControlName="patientId" type="number">
 
         <mat-error *ngIf="formGroup.get('doctorId').touched && formGroup.get('doctorId').errors && formGroup.get('doctorId').errors.required">
-          Sum required!
+          patientId required!
         </mat-error>
       </mat-form-field>
 
