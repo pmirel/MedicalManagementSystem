@@ -1,14 +1,19 @@
 <h1 id="tableLabel">Doctors</h1>
 
-
+<p>Current page: {{doctors?.currentPage}}</p>
+<p>Last page: {{doctors?.totalPages}}</p>
 
 <div class="example-button-row">
   <button mat-raised-button [routerLink]='["../edit"]' color="primary">Add</button>
 </div>
 
+<mat-paginator [length]="doctors?.totalItems"
+               [pageSize]="doctors?.itemsPerPage"
+               [pageSizeOptions]="[5, 10, 20]"
+               (page)="pageEvent = loadDoctors($event)">
+</mat-paginator>
 
-
-<table mat-table [dataSource]="doctors" class="mat-elevation-z8">
+<table mat-table [dataSource]="doctors.items" class="mat-elevation-z8">
 
 
 

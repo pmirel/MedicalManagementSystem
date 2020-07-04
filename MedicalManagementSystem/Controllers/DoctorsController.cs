@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MedicalManagementSystem.Models;
 using MedicalManagementSystem.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using MedicalManagementSystem.ViewModel.Collections;
 
 namespace MedicalManagementSystem.Controllers
 {
@@ -27,19 +28,28 @@ namespace MedicalManagementSystem.Controllers
         /// Get a list of all the doctors
         /// </summary>
         /// <param name="speciality">Specify this parameter for a list of doctors from a specific medical speciality</param>
+        /// <param name="page">current page</param>
+        /// <param name="itemsPerPage">number of items per page</param>
         /// <returns>A list of doctor objects</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors(
-            [FromQuery] Models.Speciality? speciality = null)
+        public async Task<ActionResult> GetDoctors(
+            [FromQuery] Models.Speciality? speciality = null,
+            [FromQuery] int page = 0,
+            [FromQuery] int itemsPerPage = 5)
         {
             IQueryable<Doctor> result = _context.Doctors;
             if (speciality != null)
             {
                 result = result.Where(f => f.Speciality == speciality);
             }
-            var resultList = await result.ToListAsync();
+            var resultList = await result
+                .Skip(page * itemsPerPage)
+                .Take(itemsPerPage)
+                .ToListAsync();
 
-            return resultList;
+            var paginatedList = new PaginatedList<Doctor>(page, await result.CountAsync(), itemsPerPage);
+            paginatedList.Items.AddRange(resultList);
+            return Ok(paginatedList);
         }
 
         // GET: api/Doctors/5

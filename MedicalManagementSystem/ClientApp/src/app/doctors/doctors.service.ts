@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 
 import { Doctor } from './doctors.models';
 import { ApplicationService } from '../core/services/application.service';
+import { PaginatedDoctors } from './paginatedDoctors.models';
+import { PageEvent } from '@angular/material';
 //import { PaginatedExpenses } from './paginatedExpenses.models';
 //import { PageEvent } from '@angular/material/paginator';
 
@@ -19,8 +21,12 @@ export class DoctorsService {
     return this.http.get<Doctor>(`${this.applicationService.baseUrl}api/Doctors/${id}`);
   }
 
-  listDoctors() {
-    return this.http.get<Doctor[]>(`${this.applicationService.baseUrl}api/Doctors`);
+  listDoctors(event?: PageEvent) {
+    let pageIndex = event ? event.pageIndex + "" : "0";
+    let itemsPerPage = event ? event.pageSize + "" : "5";
+    console.log(event);
+    let params = new HttpParams().set("page", pageIndex).set("itemsPerPage", itemsPerPage); //Create new HttpParams
+    return this.http.get<PaginatedDoctors>(`${this.applicationService.baseUrl}api/Doctors`, { params: params });
   }
 
   saveDoctor(doctor: Doctor) {
@@ -33,6 +39,7 @@ export class DoctorsService {
 
   deleteDoctor(id: number) {
     return this.http.delete<any>(`${this.applicationService.baseUrl}api/Doctors/${id}`);
+
   }
 }
 
