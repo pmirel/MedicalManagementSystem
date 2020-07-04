@@ -12,7 +12,7 @@ namespace MedicalManagementSystem.Models
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Prescription> Prescription { get; set; }
-
+        public DbSet<Booking> Booking { get; set; }
         public MMSDbContext(DbContextOptions<MMSDbContext> options)
             : base(options)
         {
