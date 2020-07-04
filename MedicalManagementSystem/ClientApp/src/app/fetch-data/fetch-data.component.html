@@ -23,7 +23,7 @@
 
         <a class="btn btn-info">Edit</a>
         <a class="btn btn-danger">Delete</a>
-        <a class="btn btn-primary">Patients</a>
+        <a [routerLink]="['/fetch-data', doctor.id]">Patients</a> 
       </td>
     </tr>
   </tbody>

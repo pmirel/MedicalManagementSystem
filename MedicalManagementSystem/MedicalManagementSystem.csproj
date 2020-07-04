@@ -9,6 +9,14 @@
         <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="ClientApp\src\app\patients\patient-details\**" />
+      <Content Remove="ClientApp\src\app\patients\patient-details\**" />
+      <EmbeddedResource Remove="ClientApp\src\app\patients\patient-details\**" />
+      <None Remove="ClientApp\src\app\patients\patient-details\**" />
+      <TypeScriptCompile Remove="ClientApp\src\app\patients\patient-details\**" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />

@@ -1,0 +1,48 @@
+<h1 id="tableLabel">Patients</h1>
+
+<div class="example-button-row">
+  <button mat-raised-button [routerLink]='["../edit"]' color="primary">Add</button>
+</div>
+<table mat-table [dataSource]="patients" class="mat-elevation-z8">
+
+
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef style="width:25%"> First name </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef style="width:25%"> Last Name </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cnp">
+    <th mat-header-cell *matHeaderCellDef style="width:25%"> CNP </th>
+    <td mat-cell *matCellDef="let patient"> {{patient.cnp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef style="width:25%"> Actions </th>
+    <td mat-cell *matCellDef="let patient">
+      <div [routerLinkActive]="['link-active']">
+        
+        <button mat-icon-button matTooltip="Edit" [matTooltipPosition]="'after'">
+          <mat-icon aria-label="Example icon-button with a heart icon" [routerLink]="['../edit', patient.id]">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete" [matTooltipPosition]="'after'">
+          <mat-icon aria-label="Example icon-button with a heart icon " (click)="deletePatient(patient)">delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+

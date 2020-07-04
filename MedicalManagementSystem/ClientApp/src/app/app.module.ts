@@ -16,15 +16,18 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
 
-  //{ path: 'expenses', loadChildren: './expenses/expenses.module#ExpensesModule' },
+  { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule' },
+  { path: 'patients', loadChildren: './patients/patients.module#PatientsModule' },
 
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'counter', component: CounterComponent },
+  { path: 'fetch-data/:doctorId', component: DoctorDetailsComponent },
   { path: 'fetch-data', component: FetchDataComponent },
 ];
 
@@ -36,7 +39,8 @@ const routes: Routes = [
     CounterComponent,
     FetchDataComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    DoctorDetailsComponent, 
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

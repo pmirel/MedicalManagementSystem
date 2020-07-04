@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MedicalManagementSystem.Models;
 using MedicalManagementSystem.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalManagementSystem.Controllers
 {

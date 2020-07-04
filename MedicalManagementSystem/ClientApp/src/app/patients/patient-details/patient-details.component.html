@@ -1,0 +1,56 @@
+<h1>Patient detail</h1>
+
+
+
+<p *ngIf="!patient"><em>Loading...</em></p>
+
+<a class="btn btn-info" [routerLink]="['/patients']" routerLinkActive="active">Back</a>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="patient">
+
+  <tbody>
+    <tr>
+      <th>First Name</th>
+      <td>{{ patient.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{ patient.lastName }}</td>
+    </tr>
+    <tr>
+      <th>CNP</th>
+      <td>{{ patient.cnp }}</td>
+    </tr>
+    <tr>
+      <th>Adress</th>
+      <td>{{ patient.adress }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ patient.email }}</td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+<h2>Prescriptions</h2>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="prescription">
+  <thead>
+    <tr>
+      <th>Diagnosis</th>
+      <th>Description</th>
+      <th>Date Added</th>
+      <th>Price</th>
+
+    </tr>
+  </thead>
+  <tr *ngFor="let prescription of prescription.prescriptions">
+    <td>{{ prescription.diagnosis }}</td>
+    <td>{{ prescription.description }}</td>
+    <td>{{ prescription.dateAdded }}</td>
+    <td>{{ prescription.price }}</td>
+
+  </tr>
+</table>
+<a class="btn btn-info" [routerLink]="['/patients']" routerLinkActive="active">Back</a>
+

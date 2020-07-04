@@ -1,4 +1,4 @@
-namespace ExpensesLab2.Models.Account
+namespace MedicalManagementSystem.Models.Account
 {
     public struct RegisterModel
     {

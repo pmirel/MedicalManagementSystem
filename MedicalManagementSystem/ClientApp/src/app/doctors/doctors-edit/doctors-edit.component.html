@@ -1,0 +1,41 @@
+
+<p>
+  Add/Edit doctor
+</p>
+
+<mat-card class="example-card">
+  <form *ngIf="formGroup" [formGroup]="formGroup">
+    <div class="example-container">
+
+
+      <mat-form-field>
+        <input matInput placeholder="FirstName" formControlName="firstName" type="text">
+
+        <mat-error *ngIf="formGroup.get('firstName').touched && formGroup.get('firstName').errors && formGroup.get('firstName').errors.required">
+          Description required!
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="LastName" formControlName="lastName" type="text">
+
+        <mat-error *ngIf="formGroup.get('lastName').touched && formGroup.get('lastName').errors && formGroup.get('lastName').errors.required">
+          Sum required!
+        </mat-error>
+      </mat-form-field>
+
+      
+
+      
+
+      
+
+
+
+    </div>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="save()">Save</button>
+      <button mat-raised-button color="primary" [routerLink]='routerLink'>Cancel</button>
+    </div>
+  </form>
+</mat-card>

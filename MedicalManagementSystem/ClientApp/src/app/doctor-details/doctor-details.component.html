@@ -1,0 +1,46 @@
+<h1>Doctor detail</h1>
+
+
+
+<p *ngIf="!doctor"><em>Loading...</em></p>
+
+<a class="btn btn-info" [routerLink]="['/doctors']" routerLinkActive="active">Back</a>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="doctor">
+
+  <tbody>
+    <tr>
+      <th>First Name</th>
+      <td>{{ doctor.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{ doctor.lastName }}</td>
+    </tr>
+    <tr>
+      <th>Medical Speciality</th>
+      <td>{{ doctor.speciality }}</td>
+    </tr>
+    
+
+  </tbody>
+</table>
+
+<h2>Patients</h2>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="doctor">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>CNP</th>
+
+    </tr>
+  </thead>
+  <tr *ngFor="let patient of doctor.patients">
+    <td>{{ patient.firstName }}</td>
+    <td>{{ patient.lastName }}</td>
+    <td>{{ patient.cnp }}</td>
+
+  </tr>
+</table>
+<a class="btn btn-info" [routerLink]="['/doctors']" routerLinkActive="active">Back</a>
+
