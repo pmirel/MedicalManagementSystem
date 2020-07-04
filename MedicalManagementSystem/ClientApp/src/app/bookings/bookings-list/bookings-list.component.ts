@@ -7,7 +7,8 @@ import { BookingsService } from '../bookings.service'
   styleUrls: ['./bookings-list.component.css']
 })
 export class BookingsListComponent implements OnInit {
-  public displayedColumns: string[] = ['location', 'dateOfBooking', 'status', 'doctorId', 'bookingId'];
+
+  public displayedColumns: string[] = ['location', 'dateOfBooking', 'doctorId', 'patientId'];
   public bookings: Booking[];
 
 
@@ -20,7 +21,7 @@ export class BookingsListComponent implements OnInit {
 
   loadBookings() {
     this.bookingsService.listBookings().subscribe(res => {
-      
+      this.bookings = res;
 
     });
   }

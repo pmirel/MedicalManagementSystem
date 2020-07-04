@@ -1,1 +1,46 @@
 <p>bookings-edit works!</p>
+
+<p>
+  Add/Edit booking
+</p>
+
+<mat-card class="example-card">
+  <form *ngIf="formGroup" [formGroup]="formGroup">
+    <div class="example-container">
+
+
+      <mat-form-field>
+        <input matInput placeholder="Description" formControlName="location" type="text">
+
+        <mat-error *ngIf="formGroup.get('location').touched && formGroup.get('location').errors && formGroup.get('location').errors.required">
+          Description required!
+        </mat-error>
+      </mat-form-field>
+
+      
+
+      <mat-form-field>
+        <input matInput placeholder="DoctorId" formControlName="doctorId" type="number">
+
+        <mat-error *ngIf="formGroup.get('doctorId').touched && formGroup.get('doctorId').errors && formGroup.get('doctorId').errors.required">
+          Sum required!
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="PatientId" formControlName="patientId" type="number">
+
+        <mat-error *ngIf="formGroup.get('doctorId').touched && formGroup.get('doctorId').errors && formGroup.get('doctorId').errors.required">
+          Sum required!
+        </mat-error>
+      </mat-form-field>
+
+      
+
+    </div>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="save()">Save</button>
+      <button mat-raised-button color="primary" [routerLink]='routerLink'>Cancel</button>
+    </div>
+  </form>
+</mat-card>

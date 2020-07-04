@@ -12,7 +12,7 @@
         <input matInput placeholder="FirstName" formControlName="firstName" type="text">
 
         <mat-error *ngIf="formGroup.get('firstName').touched && formGroup.get('firstName').errors && formGroup.get('firstName').errors.required">
-          Description required!
+          First name required!
         </mat-error>
       </mat-form-field>
 
@@ -20,7 +20,7 @@
         <input matInput placeholder="LastName" formControlName="lastName" type="text">
 
         <mat-error *ngIf="formGroup.get('lastName').touched && formGroup.get('lastName').errors && formGroup.get('lastName').errors.required">
-          Sum required!
+          Last Name required!
         </mat-error>
       </mat-form-field>
 

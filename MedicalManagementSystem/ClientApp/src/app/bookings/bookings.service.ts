@@ -17,7 +17,7 @@ export class BookingsService {
   }
 
   listBookings() {
-    return this.http.get<Booking>(`${this.applicationService.baseUrl}api/Bookings`);
+    return this.http.get<Booking[]>(`${this.applicationService.baseUrl}api/Bookings`);
   }
 
   saveBooking(doctor: Booking) {

@@ -10,7 +10,6 @@ namespace MedicalManagementSystem.Models
         public long Id { get; set; }
         public string Location { get; set; }
         public DateTimeOffset DateOfBooking { get; set; }
-        public string Status { get; set; }
         public long DoctorId { get; set; }
         public Doctor Doctor { get; set; }
         public long PatientId { get; set; }
